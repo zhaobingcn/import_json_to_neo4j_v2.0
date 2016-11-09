@@ -32,16 +32,19 @@ public class ConvertToNode {
         }
     }
 
-//    public List<Map<String, Object>> getInsittution(JSONObject object){
-//
-//    }
-//
-//    public Map<String, Object> getPaper(JSONObject object){
-//
-//    }
-//
-//    public List<String> getKeyWords(JSONObject object){
-//
-//    }
+    public List<Map<String, Object>> getInsittution(JSONObject object){
+
+        return null;
+    }
+
+    public Map<String, Object> getPaper(JSONObject object){
+
+        return null;
+    }
+
+    public List<String> getKeyWords(JSONObject object){
+
+        return null;
+    }
 
 }
