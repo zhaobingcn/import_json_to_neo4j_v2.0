@@ -12,17 +12,6 @@ import java.util.Map;
  */
 public class Runner {
     public static void main(String[] args) throws Exception{
-        BufferedReader in = null;
-        try {
-            in = Util.getBufferedReaderForJson("D:/paper_clean.dat");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        int count = 8;
-        while(count-- >0){
-            String line = in.readLine();
-            List<Map<String, Object>> authors = ConvertToNode.getAuthors(new JSONObject(line));
-        }
 
     }
 }
