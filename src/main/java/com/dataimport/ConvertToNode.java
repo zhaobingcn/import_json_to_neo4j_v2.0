@@ -1,5 +1,7 @@
 package com.dataimport;
 
+import org.apache.commons.lang3.ObjectUtils;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.*;
@@ -7,6 +9,7 @@ import java.util.*;
 /**
  * Created by hexu on 2016/11/9.
  */
+
 public class ConvertToNode {
     public List<Map<String, Object>> getAuthors(JSONObject object){
         List<Map<String, Object>> authors = new ArrayList<>();
@@ -41,7 +44,9 @@ public class ConvertToNode {
             String name = insKeys.next();
             institution.put("name", name);
             String location = "";
-            location = insObject.getString(name);
+            if(insObject.get(name).getClass().equals(String.class)){
+                location = insObject.getString(name);
+            }
             institution.put("location", location);
             institutions.add(institution);
         }
@@ -49,9 +54,6 @@ public class ConvertToNode {
     }
     public Map<String, Object> getPaper(JSONObject object){
         Map<String, Object> paper = new HashMap<>();
-        if(object.getString("title") == null){
-            return paper;
-        }
         if(object.getString("title") != null){
             paper.put("title", object.getString("title"));
         }
@@ -61,38 +63,64 @@ public class ConvertToNode {
         if(object.getString("link") != null){
             paper.put("link", object.getString("link"));
         }
-        if(object.getJSONObject("date") != null){
+        if(object.get("date").getClass().equals(JSONObject.class)){
             JSONObject date = object.getJSONObject("date");
             String year = date.getString("year");
-            Integer period = date.getInt("period");
+            //period有字母的问题
+            Integer period = 1;
+            if(date.getString("period").startsWith("z") || date.getString("period").startsWith("Z")){
+                period = Integer.parseInt(date.getString("period").substring(1));
+            }else if(!date.getString("period").contains("_")){
+                period = date.getInt("period");
+            }
             String strPeriod = period.toString();
             if(period / 10 == 0){
                 strPeriod = "0" + strPeriod;
             }
             String strDate = year + strPeriod;
             paper.put("date", strDate);
+        }else{
+            paper.put("date", "000000");
         }
-        return null;
+        return paper;
     }
 
     public Map<String, Object> getJournal(JSONObject object){
         Map<String, Object> journal = new HashMap<>();
         if(object.getString("journal") != null){
-            journal.put("name", journal);
+            journal.put("name", object.getString("journal"));
         }
         return  journal;
     }
 
-    public
+    public List<String> getInclude(JSONObject object){
+        List<String> includes = new ArrayList<>();
+        if (object.get("include").getClass().equals(JSONArray.class)) {
+            if (object.getJSONArray("include") == null) {
+                return includes;
+            } else {
+                JSONArray includeArray = object.getJSONArray("include");
+                for (Object inc : includeArray) {
+                    String include = inc.toString();
+                    includes.add(include);
+                }
+            }
+        } else if(object.get("include").getClass().equals(String.class)){
+            includes.add(object.getString("include"));
+        }
+        return includes;
+    }
 
 
     public List<String> getKeyWords(JSONObject object){
-
-        return null;
+        List<String> keywords = new ArrayList<>();
+        if(object.getJSONArray("keywords") != null){
+            JSONArray keywordsArray = object.getJSONArray("keywords");
+            for(Object key: keywordsArray){
+                String keyword = key.toString();
+                keywords.add(keyword);
+            }
+        }
+        return keywords;
     }
-
-    public void testPrint(){
-        System.out.println("test the class");
-    }
-
 }
