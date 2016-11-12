@@ -3,12 +3,12 @@ package com.dataimport.entity;
 /**
  * Created by zhzy on 2016/11/12.
  */
-public class Institution {
+public class InstitutionEntity {
     private String name;
     private String location;
     private Long id;
 
-    public Institution(String name, String location, Long id) {
+    public InstitutionEntity(String name, String location, Long id) {
         this.name = name;
         this.location = location;
         this.id = id;

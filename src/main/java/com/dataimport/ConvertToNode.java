@@ -11,15 +11,15 @@ import java.util.*;
  */
 
 public class ConvertToNode {
-    public List<Map<String, Object>> getAuthors(JSONObject object){
-        List<Map<String, Object>> authors = new ArrayList<>();
+    public List<Map<String, String>> getAuthors(JSONObject object){
+        List<Map<String, String>> authors = new ArrayList<>();
         if(object.getJSONObject("authors") == null){
             return authors;
         }
         JSONObject authorsObject = object.getJSONObject("authors");
         Iterator<String> authorKeys = authorsObject.keys();
         while (authorKeys.hasNext()){
-            Map<String, Object> author = new HashMap<>();
+            Map<String, String> author = new HashMap<>();
             String name = authorKeys.next();
             author.put("name", name);
             JSONObject ins = authorsObject.getJSONObject(name);
@@ -32,15 +32,15 @@ public class ConvertToNode {
 
     }
 
-    public List<Map<String, Object>> getInsittution(JSONObject object){
-        List<Map<String, Object>> institutions = new ArrayList<>();
+    public List<Map<String, String>> getInsittution(JSONObject object){
+        List<Map<String, String>> institutions = new ArrayList<>();
         if(object.getJSONObject("institutions") == null){
             return institutions;
         }
         JSONObject insObject = object.getJSONObject("institutions");
         Iterator<String> insKeys = insObject.keys();
         while(insKeys.hasNext()){
-            Map<String, Object> institution = new HashMap<>();
+            Map<String, String> institution = new HashMap<>();
             String name = insKeys.next();
             institution.put("name", name);
             String location = "";
@@ -52,13 +52,14 @@ public class ConvertToNode {
         }
         return institutions;
     }
-    public Map<String, Object> getPaper(JSONObject object){
-        Map<String, Object> paper = new HashMap<>();
+
+    public Map<String, String> getPaper(JSONObject object){
+        Map<String, String> paper = new HashMap<>();
         if(object.getString("title") != null){
             paper.put("title", object.getString("title"));
         }
         if(object.getString("quote") != null){
-            paper.put("quote", object.getInt("quote"));
+            paper.put("quote", object.getString("quote"));
         }
         if(object.getString("link") != null){
             paper.put("link", object.getString("link"));
@@ -85,8 +86,8 @@ public class ConvertToNode {
         return paper;
     }
 
-    public Map<String, Object> getJournal(JSONObject object){
-        Map<String, Object> journal = new HashMap<>();
+    public Map<String, String> getJournal(JSONObject object){
+        Map<String, String> journal = new HashMap<>();
         if(object.getString("journal") != null){
             journal.put("name", object.getString("journal"));
         }
