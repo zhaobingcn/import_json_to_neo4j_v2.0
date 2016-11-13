@@ -6,10 +6,30 @@ package com.dataimport.entity;
 public class RelationshipEntity {
     private Long source;
     private Long target;
+    private Long times;
+    private String type;
 
-    public RelationshipEntity(Long source, Long target) {
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public RelationshipEntity(Long source, Long target, Long times, String type) {
         this.source = source;
         this.target = target;
+        this.times = times;
+        this.type = type;
+    }
+
+    public Long getTimes() {
+        return times;
+    }
+
+    public void setTimes(Long times) {
+        this.times = times;
     }
 
     public Long getSource() {
