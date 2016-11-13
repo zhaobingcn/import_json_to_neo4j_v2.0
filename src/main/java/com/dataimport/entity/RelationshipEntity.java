@@ -1,9 +1,11 @@
 package com.dataimport.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by zhzy on 2016/11/12.
  */
-public class RelationshipEntity {
+public class RelationshipEntity implements Serializable{
     private Long source;
     private Long target;
     private Long times;

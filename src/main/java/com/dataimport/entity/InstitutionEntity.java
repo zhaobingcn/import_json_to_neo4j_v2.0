@@ -1,9 +1,11 @@
 package com.dataimport.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by zhzy on 2016/11/12.
  */
-public class InstitutionEntity {
+public class InstitutionEntity implements Serializable{
     private String name;
     private String location;
     private Long id;

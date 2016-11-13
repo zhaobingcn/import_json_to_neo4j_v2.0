@@ -6,7 +6,7 @@ import java.io.*;
 /**
  * Created by hexu on 2016/11/9.
  */
-public class Util {
+public class UtilRead {
     //读文件，变成流文件
     public BufferedReader getBufferedReaderForJson(String file) throws FileNotFoundException {
         File inFilePath = new File(file);

@@ -1,9 +1,11 @@
 package com.dataimport.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by zhzy on 2016/11/12.
  */
-public class PaperEntity {
+public class PaperEntity implements Serializable{
     private String title;
     private String quote;
     private String link;

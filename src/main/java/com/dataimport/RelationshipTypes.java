@@ -7,9 +7,10 @@ import org.neo4j.graphdb.RelationshipType;
  */
 public enum RelationshipTypes implements RelationshipType {
     publish,
-    work_in,
+    works_in,
     involve,
     cooperate,
     work_together,
     contains,
+    similar
 }

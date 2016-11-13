@@ -1,9 +1,11 @@
 package com.dataimport.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by zhzy on 2016/11/12.
  */
-public class JournalEntity {
+public class JournalEntity implements Serializable{
     private String name;
     private Long id;
 

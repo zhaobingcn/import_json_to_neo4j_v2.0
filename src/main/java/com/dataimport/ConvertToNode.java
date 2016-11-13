@@ -88,7 +88,7 @@ public class ConvertToNode {
 
     public Map<String, String> getJournal(JSONObject object){
         Map<String, String> journal = new HashMap<>();
-        if(object.getString("journal") != null){
+        if(object.get("journal").getClass().equals(String.class)){
             journal.put("name", object.getString("journal"));
         }
         return  journal;
