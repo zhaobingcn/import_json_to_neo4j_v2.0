@@ -1,4 +1,4 @@
-package com.dataimport;
+package com.dataimport.generic;
 
 import org.neo4j.graphdb.Label;
 

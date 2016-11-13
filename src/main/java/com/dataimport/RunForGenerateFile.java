@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * Created by hexu on 2016/11/9.
  */
-public class Runner {
+public class RunForGenerateFile {
     public static void main(String[] args) throws Exception{
 
     }

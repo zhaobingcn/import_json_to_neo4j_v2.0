@@ -55,7 +55,7 @@ public class GenerateHashTable {
 
                 //获取institution
                 List<Map<String, String>> paperInstitutions = convertToNode.getInsittution(objectLine);
-                //存储要建立关系的institution实体
+                //存储要建立关系的institution实体Id
                 List<Long> institutionIdList = new ArrayList<>();
                 for (Map<String, String> institution : paperInstitutions) {
                     String hashKey = institution.get("name");
@@ -131,7 +131,7 @@ public class GenerateHashTable {
                 //建立作者合作关系 权重为合作次数
                 for (int i = 0; i < authorIdList.size(); i++) {
                     Long authorId1 = authorIdList.get(i);
-                    for (int j = 0; j < authorIdList.size(); j++) {
+                    for (int j = i+1; j < authorIdList.size(); j++) {
                         Long authorId2 = authorIdList.get(j);
                         String relationshipHashKey1 = authorId1.toString() + "_" + authorId2.toString();
                         String relationshipHashKey2 = authorId2.toString() + "_" + authorId2.toString();
@@ -197,7 +197,7 @@ public class GenerateHashTable {
                 //建立关键词之间的关系
                 for(int i=0; i<keywordIdList.size(); i++){
                     Long keywordId1 = keywordIdList.get(i);
-                    for(int j=0; j<keywordIdList.size(); j++){
+                    for(int j= i+1; j<keywordIdList.size(); j++){
                         Long keywordId2 = keywordIdList.get(j);
                         String keywordRelationshipHashKey1 = keywordId1.toString() + "_" + keywordId2.toString();
                         String keywordRelationshipHashKey2 = keywordId2.toString() + "_" + keywordId1.toString();
@@ -224,6 +224,7 @@ public class GenerateHashTable {
             utilWrite.WriteKeywordFile(keywords);
             utilWrite.WritePaperFile(papers);
             utilWrite.WriteRelationFile(relationships);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
