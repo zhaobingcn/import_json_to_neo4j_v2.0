@@ -12,6 +12,8 @@ import java.util.Map;
  */
 public class RunForGenerateFile {
     public static void main(String[] args) throws Exception{
-
+        GenerateHashTable gen = new GenerateHashTable();
+        String file = "D:/paper_clean.dat";
+        gen.generate(file);
     }
 }
