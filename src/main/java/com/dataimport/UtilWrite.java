@@ -13,7 +13,7 @@ import java.util.Map;
 public class UtilWrite {
 
     public void WriteAuthorFile(HashMap<String, AuthorEntity> hashmap) {
-        String filePath = "F:/Entity/authorEntity.dat";
+        String filePath = "D:/Entity/authorEntity.dat";
         try {
             FileOutputStream outStream = new FileOutputStream(filePath);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(
@@ -25,7 +25,7 @@ public class UtilWrite {
         }
     }
     public void WritePaperFile(HashMap<String, PaperEntity> hashmap) {
-        String filePath = "F:/Entity/paperEntity.dat";
+        String filePath = "D:/Entity/paperEntity.dat";
         try {
             FileOutputStream outStream = new FileOutputStream(filePath);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(
@@ -37,7 +37,7 @@ public class UtilWrite {
         }
     }
     public void WriteInstitutionFile(HashMap<String, InstitutionEntity> hashmap) {
-        String filePath = "F:/Entity/institutionEntity.dat";
+        String filePath = "D:/Entity/institutionEntity.dat";
         try {
             FileOutputStream outStream = new FileOutputStream(filePath);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(
@@ -49,7 +49,7 @@ public class UtilWrite {
         }
     }
     public void WriteKeywordFile(HashMap<String, KeywordEntity> hashmap) {
-        String filePath = "F:/Entity/journalEntity.dat";
+        String filePath = "D:/Entity/journalEntity.dat";
         try {
             FileOutputStream outStream = new FileOutputStream(filePath);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(
@@ -61,7 +61,7 @@ public class UtilWrite {
         }
     }
     public void WriteJournalFile(HashMap<String, JournalEntity> hashmap) {
-        String filePath = "F:/Entity/keywordEntity.dat";
+        String filePath = "D:/Entity/keywordEntity.dat";
         try {
             FileOutputStream outStream = new FileOutputStream(filePath);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(
@@ -73,7 +73,7 @@ public class UtilWrite {
         }
     }
     public void WriteRelationFile(HashMap<String, RelationshipEntity> hashmap) {
-        String filePath = "F:/Entity/relationshipEntity.dat";
+        String filePath = "D:/Entity/relationshipEntity.dat";
 
         try {
             FileOutputStream outStream = new FileOutputStream(filePath);

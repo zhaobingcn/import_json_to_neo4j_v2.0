@@ -48,6 +48,7 @@ public class GenerateHashTable {
                     PaperEntity paperEntity =
                             new PaperEntity(paper.get("title"), paper.get("quote"), paper.get("link"), paper.get("date"), nodeId);
                     paperId = nodeId;
+                    papers.put(paperHashKey, paperEntity);
                     nodeId++;
                 }else{
                     continue;
@@ -164,9 +165,10 @@ public class GenerateHashTable {
                     }
 
                     //建立论文与期刊之间的关系  这个关系肯定不存在，新建
-                    String paperJournalHashKey = paperId.toString() + journalId.toString();
+                    String paperJournalHashKey = paperId.toString() + "_" + journalId.toString();
                     RelationshipEntity paperJournalEntity =
                             new RelationshipEntity(paperId, journalId, 1l, "included_in");
+                    relationships.put(paperJournalHashKey, paperJournalEntity);
                     relationshipId ++;
                 }
 
