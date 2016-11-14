@@ -49,7 +49,7 @@ public class UtilWrite {
         }
     }
     public void WriteKeywordFile(HashMap<String, KeywordEntity> hashmap) {
-        String filePath = "D:/Entity/journalEntity.dat";
+        String filePath = "D:/Entity/keywordEntity.dat";
         try {
             FileOutputStream outStream = new FileOutputStream(filePath);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(
@@ -61,7 +61,7 @@ public class UtilWrite {
         }
     }
     public void WriteJournalFile(HashMap<String, JournalEntity> hashmap) {
-        String filePath = "D:/Entity/keywordEntity.dat";
+        String filePath = "D:/Entity/journalEntity.dat";
         try {
             FileOutputStream outStream = new FileOutputStream(filePath);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(

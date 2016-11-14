@@ -60,20 +60,23 @@ public class AppTest
         }finally {
             System.out.println("Exception");
         }
-        int count = 50000;
-        while(count-- >0){
+        int count = 0;
+        while(true){
             String line = "";
             try {
                 line = in.readLine();
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            if(line == null){
+                break;
+            }
 //            Map<String, Object> paper = convertToNode.getPaper(new JSONObject(line));
 //            System.out.println(paper.get("title") + " " + paper.get("quote") + " " + paper.get("link")
 //            + " " + paper.get("date"));
 
-            Map<String, String> journal = convertToNode.getJournal(new JSONObject(line));
-            System.out.println(journal.get("name"));
+//            Map<String, String> journal = convertToNode.getJournal(new JSONObject(line));
+//            System.out.println(journal.get("name"));
 
 //            List<String> includes = convertToNode.getInclude(new JSONObject(line));
 //            for(String include: includes){
@@ -81,11 +84,13 @@ public class AppTest
 //            }
 //            System.out.println();
 
-//            List<String> keywords = convertToNode.getKeyWords(new JSONObject(line));
-//            for(String key: keywords){
-//                System.out.println(key);
-//            }
+            List<String> keywords = convertToNode.getKeyWords(new JSONObject(line));
+            for(String key: keywords){
+                count++;
+                System.out.println(key);
             }
+            }
+            System.out.println(count);
         }
 
     @Test

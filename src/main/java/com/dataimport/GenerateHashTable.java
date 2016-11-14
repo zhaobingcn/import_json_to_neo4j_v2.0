@@ -1,6 +1,7 @@
 package com.dataimport;
 
 import com.dataimport.entity.*;
+import com.dataimport.generic.RelationshipTypes;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -81,7 +82,7 @@ public class GenerateHashTable {
                         String relationshipHashKey1 = institutionId1.toString() + "_" + institutionId2.toString();
                         String relationshipHashKey2 = institutionId2.toString() + "_" + institutionId1.toString();
                         if (!relationships.containsKey(relationshipHashKey1) && !relationships.containsKey(relationshipHashKey2)) {
-                            RelationshipEntity relationshipEntity = new RelationshipEntity(institutionId1, institutionId2, 1l, "coperate");
+                            RelationshipEntity relationshipEntity = new RelationshipEntity(institutionId1, institutionId2, 1l, RelationshipTypes.cooperate);
                             relationships.put(relationshipHashKey1, relationshipEntity);
                             relationshipId++;
                         } else if (relationships.containsKey(relationshipHashKey1)) {
@@ -116,7 +117,7 @@ public class GenerateHashTable {
                     String authorInstitutionRelationshipHashKey = authorId.toString() + "_" + institutions.get(institionName).getId().toString();
                     if(!relationships.containsKey(authorInstitutionRelationshipHashKey)){
                         RelationshipEntity relationshipEntity =
-                                new RelationshipEntity(authorId, institutions.get(institionName).getId(), 1l, "work_in");
+                                new RelationshipEntity(authorId, institutions.get(institionName).getId(), 1l, RelationshipTypes.works_in);
                         relationships.put(authorInstitutionRelationshipHashKey, relationshipEntity);
                         relationshipId ++;
                     }
@@ -124,7 +125,7 @@ public class GenerateHashTable {
                     //建立作者论文之间的关系 权重为1
                     String authorPaperHashKey = authorId.toString() + "_" + paperId.toString();
                     RelationshipEntity authorPaperEntity =
-                            new RelationshipEntity(authorId, paperId, 1l, "publish");
+                            new RelationshipEntity(authorId, paperId, 1l, RelationshipTypes.publish);
                     relationships.put(authorPaperHashKey, authorPaperEntity);
                     relationshipId ++;
                 }
@@ -135,10 +136,10 @@ public class GenerateHashTable {
                     for (int j = i+1; j < authorIdList.size(); j++) {
                         Long authorId2 = authorIdList.get(j);
                         String relationshipHashKey1 = authorId1.toString() + "_" + authorId2.toString();
-                        String relationshipHashKey2 = authorId2.toString() + "_" + authorId2.toString();
+                        String relationshipHashKey2 = authorId2.toString() + "_" + authorId1.toString();
                         if(!relationships.containsKey(relationshipHashKey1) && !relationships.containsKey(relationshipHashKey2)){
                             RelationshipEntity relationshipEntity =
-                                    new RelationshipEntity(authorId1, authorId2, 1l, "work_together");
+                                    new RelationshipEntity(authorId1, authorId2, 1l, RelationshipTypes.work_together);
                             relationships.put(relationshipHashKey1, relationshipEntity);
                             relationshipId ++;
                         }else if(relationships.containsKey(relationshipHashKey1)){
@@ -167,7 +168,7 @@ public class GenerateHashTable {
                     //建立论文与期刊之间的关系  这个关系肯定不存在，新建
                     String paperJournalHashKey = paperId.toString() + "_" + journalId.toString();
                     RelationshipEntity paperJournalEntity =
-                            new RelationshipEntity(paperId, journalId, 1l, "included_in");
+                            new RelationshipEntity(paperId, journalId, 1l, RelationshipTypes.included_in);
                     relationships.put(paperJournalHashKey, paperJournalEntity);
                     relationshipId ++;
                 }
@@ -191,7 +192,7 @@ public class GenerateHashTable {
                     //建立论文与关键词之间的关系
                     String paperKeywordHashKey = paperId.toString() + "_" + keywordId.toString();
                     RelationshipEntity paperKeywordEntity =
-                            new RelationshipEntity(paperId, keywordId, 1l, "involve");
+                            new RelationshipEntity(paperId, keywordId, 1l, RelationshipTypes.involve);
                     relationships.put(paperKeywordHashKey, paperKeywordEntity);
                     relationshipId ++;
                 }
@@ -205,20 +206,19 @@ public class GenerateHashTable {
                         String keywordRelationshipHashKey2 = keywordId2.toString() + "_" + keywordId1.toString();
                         if(!relationships.containsKey(keywordRelationshipHashKey1) && !keywords.containsKey(keywordRelationshipHashKey2)){
                             RelationshipEntity relationshipEntity =
-                                    new RelationshipEntity(keywordId1, keywordId2, 1l, "silimar");
+                                    new RelationshipEntity(keywordId1, keywordId2, 1l, RelationshipTypes.similar);
                             relationships.put(keywordRelationshipHashKey1, relationshipEntity);
                             relationshipId ++;
                         }else if(relationships.containsKey(keywordRelationshipHashKey1)){
                             relationships.get(keywordRelationshipHashKey1).setTimes(relationships.get(keywordRelationshipHashKey1).getTimes() + 1l);
-                            relationshipId ++;
                         }else if(relationships.containsKey(keywordRelationshipHashKey2)){
                             relationships.get(keywordRelationshipHashKey2).setTimes(relationships.get(keywordRelationshipHashKey2).getTimes() + 1l);
-                            relationshipId ++;
                         }
                     }
                 }
             }
 
+            System.out.println(nodeId + "=====" + relationshipId);
             //写入文件中
             utilWrite.WriteAuthorFile(authors);
             utilWrite.WriteInstitutionFile(institutions);

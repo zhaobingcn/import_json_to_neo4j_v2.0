@@ -11,6 +11,6 @@ public enum RelationshipTypes implements RelationshipType {
     involve,
     cooperate,
     work_together,
-    contains,
+    included_in,
     similar
 }
