@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by zhzy on 2016/11/12.
+ * @author zhaobing
  */
 public class GenerateHashTable {
 

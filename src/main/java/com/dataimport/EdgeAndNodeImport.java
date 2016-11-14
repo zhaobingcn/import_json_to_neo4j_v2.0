@@ -18,8 +18,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by hexu on 2016/11/9.
+ * @author zhaobing
  */
+
 public class EdgeAndNodeImport {
 
     HashMap<String, AuthorEntity> authors;

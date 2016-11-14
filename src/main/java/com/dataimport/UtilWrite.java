@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by zhzy on 2016/11/13.
+ * @author zhaobing
  */
 public class UtilWrite {
 

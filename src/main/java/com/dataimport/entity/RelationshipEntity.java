@@ -5,7 +5,7 @@ import com.dataimport.generic.RelationshipTypes;
 import java.io.Serializable;
 
 /**
- * Created by zhzy on 2016/11/12.
+ * @author zhaobing
  */
 public class RelationshipEntity implements Serializable{
     private static final long serialVersionUID = 1269373329410167403l;

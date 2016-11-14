@@ -3,7 +3,7 @@ package com.dataimport.entity;
 import java.io.Serializable;
 
 /**
- * Created by zhzy on 2016/11/12.
+ * @author zhaobing
  */
 public class PaperEntity implements Serializable{
     private static final long serialVersionUID = 1269373329410167403l;

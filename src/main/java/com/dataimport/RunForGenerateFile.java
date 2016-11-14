@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by hexu on 2016/11/9.
+ * @author zhaobing
  */
 public class RunForGenerateFile {
     public static void main(String[] args) throws Exception{

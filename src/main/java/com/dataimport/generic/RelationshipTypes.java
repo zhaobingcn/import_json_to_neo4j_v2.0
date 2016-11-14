@@ -3,7 +3,7 @@ package com.dataimport.generic;
 import org.neo4j.graphdb.RelationshipType;
 
 /**
- * Created by zhzy on 2016/11/12.
+ * @author zhaobing
  */
 public enum RelationshipTypes implements RelationshipType {
     publish,
