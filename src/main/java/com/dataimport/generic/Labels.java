@@ -8,7 +8,7 @@ import org.neo4j.graphdb.Label;
 public enum Labels implements Label {
     Author,
     Paper,
-    Jounrnal,
-    Kewword,
+    Journal,
+    Keyword,
     Institution
 }

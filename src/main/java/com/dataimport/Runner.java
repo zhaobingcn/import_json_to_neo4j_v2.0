@@ -13,7 +13,7 @@ public class Runner {
 
 
     public static void main(String[] args) throws IOException{
-        File dbPath = new File("D:/Mysoftware/importdate");
+        File dbPath = new File("D:/Mysoftware/importdata");
         EdgeAndNodeImport edgeAndNodeImport = new EdgeAndNodeImport(dbPath);
         edgeAndNodeImport.ReadHash();
         edgeAndNodeImport.importNode();

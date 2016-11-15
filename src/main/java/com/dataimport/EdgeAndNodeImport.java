@@ -128,7 +128,7 @@ public class EdgeAndNodeImport {
             JournalEntity journalEntity = map.getValue();
             Map<String, Object> journal = new HashMap<>();
             journal.put("name", journalEntity.getName());
-            inserter.createNode(journalEntity.getId(), journal, Labels.Jounrnal);
+            inserter.createNode(journalEntity.getId(), journal, Labels.Journal);
             journal_index.add(journalEntity.getId(), MapUtil.map("name", journal));
         }
 
@@ -136,7 +136,7 @@ public class EdgeAndNodeImport {
             KeywordEntity keywordEntity = map.getValue();
             Map<String, Object> keyword = new HashMap<>();
             keyword.put("name", keywordEntity.getName());
-            inserter.createNode(keywordEntity.getId(), keyword, Labels.Kewword);
+            inserter.createNode(keywordEntity.getId(), keyword, Labels.Keyword);
             keyword_index.add(keywordEntity.getId(), keyword);
         }
 
