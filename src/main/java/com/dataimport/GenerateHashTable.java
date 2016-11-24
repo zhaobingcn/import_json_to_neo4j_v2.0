@@ -122,10 +122,11 @@ public class GenerateHashTable {
                         relationshipId ++;
                     }
 
-                    //建立作者论文之间的关系 权重为1
+                    //建立作者论文之间的关系 权重为作者比重*100
                     String authorPaperHashKey = authorId.toString() + "_" + paperId.toString();
+                    long authorPaperWeight = (long)(1.0/paperAuthors.size()*100);
                     RelationshipEntity authorPaperEntity =
-                            new RelationshipEntity(authorId, paperId, 1l, RelationshipTypes.publish);
+                            new RelationshipEntity(authorId, paperId, authorPaperWeight, RelationshipTypes.publish);
                     relationships.put(authorPaperHashKey, authorPaperEntity);
                     relationshipId ++;
                 }
