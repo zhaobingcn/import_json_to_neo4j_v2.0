@@ -43,6 +43,12 @@ public class GenerateHashTable {
 
                 //获取paper
                 Map<String, String> paper = convertToNode.getPaper(objectLine);
+                /**
+                 * 这里删除不带日期的论文，这种论文一般是重复的
+                 */
+                if(paper.get("date").equals("000000")){
+                    continue;
+                }
                 String paperHashKey = paper.get("link");
                 Long paperId;
                 if(!papers.containsKey(paperHashKey)){
