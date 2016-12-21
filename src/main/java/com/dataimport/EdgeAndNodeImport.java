@@ -2,13 +2,14 @@ package com.dataimport;
 
 import com.dataimport.entity.*;
 import com.dataimport.generic.Labels;
-import org.neo4j.cypher.internal.frontend.v2_3.ast.functions.Str;
+import org.apache.lucene.analysis.Analyzer;
 import org.neo4j.helpers.collection.MapUtil;
 import org.neo4j.index.lucene.unsafe.batchinsert.LuceneBatchInserterIndexProvider;
 import org.neo4j.unsafe.batchinsert.BatchInserter;
 import org.neo4j.unsafe.batchinsert.BatchInserterIndex;
 import org.neo4j.unsafe.batchinsert.BatchInserterIndexProvider;
 import org.neo4j.unsafe.batchinsert.BatchInserters;
+import org.wltea.analyzer.lucene.IKAnalyzer;
 
 import java.io.File;
 import java.io.FileInputStream;
