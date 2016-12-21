@@ -95,7 +95,7 @@ public class EdgeAndNodeImport {
         exactConfig.put("type", "exact");
         Map<String, String> fulltextConfig = new HashMap<>();
         fulltextConfig.put("type", "fulltext");
-        fulltextConfig.put("analyzer", "MMSegAnalyzer");
+        fulltextConfig.put("analyzer", "IKAnalyzer");
 
         author_index = indexProvider.nodeIndex(AUTHOR_INDEX, exactConfig);
         institution_index = indexProvider.nodeIndex(INSTITUTION_INDEX, exactConfig);
