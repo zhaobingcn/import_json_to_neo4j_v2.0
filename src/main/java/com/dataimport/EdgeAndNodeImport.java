@@ -3,18 +3,18 @@ package com.dataimport;
 import com.dataimport.entity.*;
 import com.dataimport.generic.Labels;
 import org.apache.lucene.analysis.Analyzer;
+import org.neo4j.graphdb.index.IndexManager;
+import org.neo4j.graphdb.schema.IndexCreator;
 import org.neo4j.helpers.collection.MapUtil;
 import org.neo4j.index.lucene.unsafe.batchinsert.LuceneBatchInserterIndexProvider;
+import org.neo4j.storageengine.api.schema.IndexReader;
 import org.neo4j.unsafe.batchinsert.BatchInserter;
 import org.neo4j.unsafe.batchinsert.BatchInserterIndex;
 import org.neo4j.unsafe.batchinsert.BatchInserterIndexProvider;
 import org.neo4j.unsafe.batchinsert.BatchInserters;
 import org.wltea.analyzer.lucene.IKAnalyzer;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -87,22 +87,41 @@ public class EdgeAndNodeImport {
             e.printStackTrace();
         }
     }
+    public static Map<String, String> config() throws IOException{
+        String filePath = "./src/resources/batchinserter.properties";
+        FileReader file = new FileReader(new File(filePath).getAbsoluteFile());
+        Map<String, String> config = MapUtil.load(file);
+        for(Map.Entry<String, String> map:config.entrySet()){
+            System.out.println(map.getKey() + " " + map.getValue());
+        }
+        return config;
+    }
+
+//    public static void main(String[] args) throws IOException{
+//        config();
+//    }
 
     public void InitializeInserter(File filePath) throws IOException {
-        inserter = BatchInserters.inserter(filePath);
+
+        inserter = BatchInserters.inserter(filePath, config());
+        IndexCreator a = inserter.createDeferredSchemaIndex(Labels.Author);
+        a.on("name").create();
         indexProvider = new LuceneBatchInserterIndexProvider(inserter);
 
         Map<String, String> exactConfig = new HashMap<>();
         exactConfig.put("type", "exact");
         Map<String, String> fulltextConfig = new HashMap<>();
         fulltextConfig.put("type", "fulltext");
-        fulltextConfig.put("analyzer", "IKAnalyzer");
+        fulltextConfig.put("analyzer", "org.wltea.analyzer.lucene.IKAnalyzer");
 
-        author_index = indexProvider.nodeIndex(AUTHOR_INDEX, exactConfig);
-        institution_index = indexProvider.nodeIndex(INSTITUTION_INDEX, exactConfig);
+        author_index = indexProvider.nodeIndex(AUTHOR_INDEX, fulltextConfig);
+        author_index.setCacheCapacity("name", 10000);
+        institution_index = indexProvider.nodeIndex(INSTITUTION_INDEX, fulltextConfig);
         journal_index = indexProvider.nodeIndex(JOURNAL_INDEX, exactConfig);
-        keyword_index = indexProvider.nodeIndex(KEYWORD_INDEX, exactConfig);
-        paper_index = indexProvider.nodeIndex(PAPER_INDEX, exactConfig);
+        keyword_index = indexProvider.nodeIndex(KEYWORD_INDEX, fulltextConfig);
+        keyword_index.setCacheCapacity("name", 10000);
+        paper_index = indexProvider.nodeIndex(PAPER_INDEX, fulltextConfig);
+        paper_index.setCacheCapacity("title", 10000);
     }
 
     public void importNode() {
@@ -114,6 +133,7 @@ public class EdgeAndNodeImport {
             author.put("institution", authorEntity.getInstitution());
             inserter.createNode(authorEntity.getId(), author, Labels.Author);
             author_index.add(authorEntity.getId(), MapUtil.map("name", authorEntity.getName()));
+            author_index.add(authorEntity.getId(), MapUtil.map("institution", authorEntity.getInstitution()));
         }
 
         for(Map.Entry<String, InstitutionEntity> map: institutions.entrySet()){
