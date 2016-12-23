@@ -12,14 +12,13 @@ import java.io.IOException;
 public class Runner {
 
 
-    public static void main(String[] args) throws IOException{
-        File dbPath = new File("D:/Mysoftware/Neo4jDatabase/importdata");
-        EdgeAndNodeImport edgeAndNodeImport = new EdgeAndNodeImport(dbPath);
-        edgeAndNodeImport.ReadHash();
-        edgeAndNodeImport.importNode();
-        edgeAndNodeImport.importRelationship();
-        edgeAndNodeImport.shutDownIndex();
-        edgeAndNodeImport.shutDownNeo4j();
-    }
-
+        public static void main(String[] args) throws IOException{
+            File dbPath = new File("D:/Mysoftware/Neo4jDatabase/importdata");
+            EdgeAndNodeImport edgeAndNodeImport = new EdgeAndNodeImport(dbPath);
+            edgeAndNodeImport.ReadHash();
+            edgeAndNodeImport.importNode();
+            edgeAndNodeImport.importRelationship();
+            edgeAndNodeImport.shutDownIndex();
+            edgeAndNodeImport.shutDownNeo4j();
+        }
 }

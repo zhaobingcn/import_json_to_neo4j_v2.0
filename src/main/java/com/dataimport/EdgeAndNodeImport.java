@@ -97,15 +97,11 @@ public class EdgeAndNodeImport {
         return config;
     }
 
-//    public static void main(String[] args) throws IOException{
-//        config();
-//    }
-
     public void InitializeInserter(File filePath) throws IOException {
 
         inserter = BatchInserters.inserter(filePath, config());
-        IndexCreator a = inserter.createDeferredSchemaIndex(Labels.Author);
-        a.on("name").create();
+//        IndexCreator a = inserter.createDeferredSchemaIndex(Labels.Author);
+//        a.on("name").create();
         indexProvider = new LuceneBatchInserterIndexProvider(inserter);
 
         Map<String, String> exactConfig = new HashMap<>();
