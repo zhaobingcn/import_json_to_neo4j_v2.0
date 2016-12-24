@@ -18,6 +18,7 @@ public class Runner {
             edgeAndNodeImport.ReadHash();
             edgeAndNodeImport.importNode();
             edgeAndNodeImport.importRelationship();
+            edgeAndNodeImport.flushIndex();
             edgeAndNodeImport.shutDownIndex();
             edgeAndNodeImport.shutDownNeo4j();
         }

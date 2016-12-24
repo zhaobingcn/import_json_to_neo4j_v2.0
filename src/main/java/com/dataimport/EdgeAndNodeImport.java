@@ -99,7 +99,7 @@ public class EdgeAndNodeImport {
 
     public void InitializeInserter(File filePath) throws IOException {
 
-        inserter = BatchInserters.inserter(filePath, config());
+        inserter = BatchInserters.inserter(filePath);
 //        IndexCreator a = inserter.createDeferredSchemaIndex(Labels.Author);
 //        a.on("name").create();
         indexProvider = new LuceneBatchInserterIndexProvider(inserter);
@@ -111,13 +111,13 @@ public class EdgeAndNodeImport {
         fulltextConfig.put("analyzer", "org.wltea.analyzer.lucene.IKAnalyzer");
 
         author_index = indexProvider.nodeIndex(AUTHOR_INDEX, fulltextConfig);
-        author_index.setCacheCapacity("name", 10000);
+//        author_index.setCacheCapacity("name", 10000);
         institution_index = indexProvider.nodeIndex(INSTITUTION_INDEX, fulltextConfig);
         journal_index = indexProvider.nodeIndex(JOURNAL_INDEX, exactConfig);
         keyword_index = indexProvider.nodeIndex(KEYWORD_INDEX, fulltextConfig);
-        keyword_index.setCacheCapacity("name", 10000);
+//        keyword_index.setCacheCapacity("name", 10000);
         paper_index = indexProvider.nodeIndex(PAPER_INDEX, fulltextConfig);
-        paper_index.setCacheCapacity("title", 10000);
+//        paper_index.setCacheCapacity("title", 10000);
     }
 
     public void importNode() {
@@ -128,8 +128,8 @@ public class EdgeAndNodeImport {
             author.put("name", authorEntity.getName());
             author.put("institution", authorEntity.getInstitution());
             inserter.createNode(authorEntity.getId(), author, Labels.Author);
-            author_index.add(authorEntity.getId(), MapUtil.map("name", authorEntity.getName()));
-            author_index.add(authorEntity.getId(), MapUtil.map("institution", authorEntity.getInstitution()));
+            author_index.add(authorEntity.getId(), MapUtil.map("name", authorEntity.getName(), "institution", authorEntity.getInstitution()));
+//            author_index.add(authorEntity.getId(), MapUtil.map());
         }
 
         for(Map.Entry<String, InstitutionEntity> map: institutions.entrySet()){
@@ -180,6 +180,13 @@ public class EdgeAndNodeImport {
         }
     }
 
+    public void flushIndex(){
+        author_index.flush();
+        institution_index.flush();
+        journal_index.flush();
+        keyword_index.flush();
+        paper_index.flush();
+    }
     public void shutDownIndex(){
         indexProvider.shutdown();
     }
