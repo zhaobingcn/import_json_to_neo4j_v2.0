@@ -42,18 +42,18 @@ public class GenerateHashTable {
                 JSONObject objectLine = new JSONObject(line);
 
                 //获取paper
-                Map<String, String> paper = convertToNode.getPaper(objectLine);
+                Map<String, Object> paper = convertToNode.getPaper(objectLine);
                 /**
                  * 这里删除不带日期的论文，这种论文一般是重复的
                  */
                 if(paper.get("date").equals("000000")){
                     continue;
                 }
-                String paperHashKey = paper.get("link");
+                String paperHashKey = paper.get("link").toString();
                 Long paperId;
                 if(!papers.containsKey(paperHashKey)){
                     PaperEntity paperEntity =
-                            new PaperEntity(paper.get("title"), paper.get("quote"), paper.get("link"), paper.get("date"), nodeId);
+                            new PaperEntity(paper.get("title").toString(), Integer.parseInt(paper.get("quote").toString()), paper.get("link").toString(), paper.get("date").toString(), nodeId);
                     paperId = nodeId;
                     papers.put(paperHashKey, paperEntity);
                     nodeId++;

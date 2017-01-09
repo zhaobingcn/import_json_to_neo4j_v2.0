@@ -53,13 +53,13 @@ public class ConvertToNode {
         return institutions;
     }
 
-    public Map<String, String> getPaper(JSONObject object){
-        Map<String, String> paper = new HashMap<>();
+    public Map<String, Object> getPaper(JSONObject object){
+        Map<String, Object> paper = new HashMap<>();
         if(object.getString("title") != null){
             paper.put("title", object.getString("title"));
         }
         if(object.getString("quote") != null){
-            paper.put("quote", object.getString("quote"));
+            paper.put("quote", Integer.parseInt(object.getString("quote")));
         }
         if(object.getString("link") != null){
             paper.put("link", object.getString("link"));

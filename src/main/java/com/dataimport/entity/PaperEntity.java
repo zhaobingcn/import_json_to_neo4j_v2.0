@@ -8,12 +8,12 @@ import java.io.Serializable;
 public class PaperEntity implements Serializable{
     private static final long serialVersionUID = 1269373329410167403l;
     private String title;
-    private String quote;
+    private int quote;
     private String link;
     private String date;
     private Long id;
 
-    public PaperEntity(String title, String quote, String link, String date, Long id) {
+    public PaperEntity(String title, int quote, String link, String date, Long id) {
         this.title = title;
         this.quote = quote;
         this.link = link;
@@ -29,11 +29,11 @@ public class PaperEntity implements Serializable{
         this.title = title;
     }
 
-    public String getQuote() {
+    public int getQuote() {
         return quote;
     }
 
-    public void setQuote(String quote) {
+    public void setQuote(int quote) {
         this.quote = quote;
     }
 
