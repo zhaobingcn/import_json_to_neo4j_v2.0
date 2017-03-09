@@ -13,7 +13,8 @@ public class Runner {
 
 
         public static void main(String[] args) throws IOException{
-            File dbPath = new File("D:/Mysoftware/Neo4jDatabase/importdata");
+//            File dbPath = new File("D:/Mysoftware/Neo4jDatabase/importdata");
+            File dbPath = new File("/home/zhzy/Documents/Neo4j/paperData");
             EdgeAndNodeImport edgeAndNodeImport = new EdgeAndNodeImport(dbPath);
             edgeAndNodeImport.ReadHash();
             edgeAndNodeImport.importNode();

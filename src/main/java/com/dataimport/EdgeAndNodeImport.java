@@ -59,27 +59,33 @@ public class EdgeAndNodeImport {
         papers = new HashMap<>();
         relationships = new HashMap<>();
         try {
-            fAuthor = new FileInputStream("D:/Entity/authorEntity.dat");
+//            fAuthor = new FileInputStream("D:/Entity/authorEntity.dat");
+            fAuthor = new FileInputStream("/home/zhzy/Documents/data/authorEntity.dat");
             ObjectInputStream authorInputStream = new ObjectInputStream(fAuthor);
             authors = (HashMap<String, AuthorEntity>) authorInputStream.readObject();
 
-            fInstitution = new FileInputStream("D:/Entity/institutionEntity.dat");
+//            fInstitution = new FileInputStream("D:/Entity/institutionEntity.dat");
+            fInstitution = new FileInputStream("/home/zhzy/Documents/data/institutionEntity.dat");
             ObjectInputStream institutionInputStream = new ObjectInputStream(fInstitution);
             institutions = (HashMap<String, InstitutionEntity>) institutionInputStream.readObject();
 
-            fJournal = new FileInputStream("D:/Entity/journalEntity.dat");
+//            fJournal = new FileInputStream("D:/Entity/journalEntity.dat");
+            fJournal = new FileInputStream("/home/zhzy/Documents/data/journalEntity.dat");
             ObjectInputStream journalInputStream = new ObjectInputStream(fJournal);
             journals = (HashMap<String, JournalEntity>) journalInputStream.readObject();
 
-            fKeyword = new FileInputStream("D:/Entity/keywordEntity.dat");
+//            fKeyword = new FileInputStream("D:/Entity/keywordEntity.dat");
+            fKeyword = new FileInputStream("/home/zhzy/Documents/data/keywordEntity.dat");
             ObjectInputStream keywordInputStream = new ObjectInputStream(fKeyword);
             keywords = (HashMap<String, KeywordEntity>) keywordInputStream.readObject();
 
-            fPaper = new FileInputStream("D:/Entity/paperEntity.dat");
+//            fPaper = new FileInputStream("D:/Entity/paperEntity.dat");
+            fPaper = new FileInputStream("/home/zhzy/Documents/data/paperEntity.dat");
             ObjectInputStream paperInputStream = new ObjectInputStream(fPaper);
             papers = (HashMap<String, PaperEntity>) paperInputStream.readObject();
 
-            fRelationship = new FileInputStream("D:/Entity/relationshipEntity.dat");
+//            fRelationship = new FileInputStream("D:/Entity/relationshipEntity.dat");
+            fRelationship = new FileInputStream("/home/zhzy/Documents/data/relationshipEntity.dat");
             ObjectInputStream relationshipInputStream = new ObjectInputStream(fRelationship);
             relationships = (HashMap<String, RelationshipEntity>) relationshipInputStream.readObject();
 
